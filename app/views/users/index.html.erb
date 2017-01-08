@@ -1,0 +1,46 @@
+<div class="page-header">
+  <h1><%= t('.title') %></h1>
+</div>
+
+<div class="decorated-list">
+  <% users.each do |user| %>
+    <div class="decorated-list-item">
+      <h6>
+        <%= link_to user.name_formatted, user %>
+        <small class="float-right"><%= user.role_readable %></small>
+      </h6>
+
+      <div class="info-block">
+        <div class="row">
+          <div class="col">
+            <strong><%= t('.contacts') %></strong>
+            <ul class="clear-list">
+              <li>Телефон: <strong><%= user.phone %></strong></li>
+              <li>Email: <strong><%= user.email %></strong></li>
+            </ul>
+          </div>
+          <% if user.any_relations? %>
+            <div class="col">
+              <strong><%= t('.relations') %></strong>
+              <ul class="clear-list">
+                <% user.user_relations.each do |relation| %>
+                  <li>
+                    <%= link_to relation.to_user.name, relation.to_user %>
+                    <small class="text-muted"><%= relation.relation_readable %></small>
+                  </li>
+                <% end %>
+
+                <% user.to_user_relations.each do |relation| %>
+                  <li>
+                    <%= link_to relation.user.name, relation.user %>
+                    <small class="text-muted"><%= relation.reversed_relation_readable %></small>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

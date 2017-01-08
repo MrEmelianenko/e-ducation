@@ -3,13 +3,16 @@ class GradeUser < ApplicationRecord
   belongs_to :grade
   belongs_to :user
 
-  # Validation
+  # Validations
   validates :grade_id, presence: true
   validates :user_id,  presence: true
 
   # Enumerable
   enum relation_type: {
-    member: 10,
-    mentor: 20
+    student: 10,
+    teacher: 20
   }
+
+  # Scopes
+  scope :ordered, -> { joins(:user).order('grade_users.relation_type DESC, users.last_name COLLATE "C" ASC') }
 end

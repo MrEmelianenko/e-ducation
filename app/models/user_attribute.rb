@@ -20,6 +20,6 @@ class UserAttribute < ApplicationRecord
   # Associations
   belongs_to :user
 
-  # Validation
+  # Validations
   validates :user_id, presence: true
 end

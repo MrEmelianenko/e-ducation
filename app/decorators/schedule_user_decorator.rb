@@ -1,0 +1,2 @@
+class ScheduleUserDecorator < ApplicationDecorator
+end

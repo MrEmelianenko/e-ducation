@@ -1,0 +1,41 @@
+<div class="page-header">
+  <h1><%= user.name_formatted %></h1>
+</div>
+
+<div class="user-show">
+  <div class="row">
+    <div class="col">
+      <h5><%= t('.contacts') %></h5>
+      <ul class="clear-list">
+        <li>Телефон: <strong><%= user.phone %></strong></li>
+        <li>Email: <strong><%= user.email %></strong></li>
+      </ul>
+    </div>
+    <div class="col">
+      <h5><%= t('.relations') %></h5>
+      <% if user.any_relations? %>
+        <ul class="clear-list">
+          <% user.user_relations.each do |relation| %>
+            <li>
+              <%= link_to relation.to_user.name, relation.to_user %>
+              <small class="text-muted"><%= relation.relation_readable %></small>
+            </li>
+          <% end %>
+
+          <% user.to_user_relations.each do |relation| %>
+            <li>
+              <%= link_to relation.user.name, relation.user %>
+              <small class="text-muted"><%= relation.reversed_relation_readable %></small>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <i><%= t('.no_relations') %></i>
+      <% end %>
+    </div>
+  </div>
+
+  <% if lookup_context.template_exists?("users/_#{user.role}_info") %>
+    <%= render partial: "#{user.role}_info", locals: { user: user } %>
+  <% end %>
+</div>

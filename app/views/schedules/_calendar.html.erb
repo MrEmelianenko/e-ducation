@@ -1,0 +1,20 @@
+<%= week_calendar events: schedules do |date, schedules| %>
+  <div class="calendar-cell">
+    <div class="date"><%= date %></div>
+
+    <ul class="list-of-schedules clear-list">
+      <% schedules.each do |schedule| %>
+        <li>
+          <small>
+            <%= schedule.start_at.to_s(:time) %>-<%= schedule.finish_at.to_s(:time) %>
+            –
+            <%= schedule.grade.name %>
+          </small>
+          <br>
+          <%= link_to schedule.subject.name, schedule %>
+          <hr>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

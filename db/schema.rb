@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170108124729) do
+ActiveRecord::Schema.define(version: 20170108161602) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,6 +39,17 @@ ActiveRecord::Schema.define(version: 20170108124729) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.index ["user_id"], name: "index_news_on_user_id", using: :btree
+  end
+
+  create_table "schedule_users", force: :cascade do |t|
+    t.integer  "schedule_id"
+    t.integer  "user_id"
+    t.integer  "status",      default: 0
+    t.integer  "evaluation"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.index ["schedule_id"], name: "index_schedule_users_on_schedule_id", using: :btree
+    t.index ["user_id"], name: "index_schedule_users_on_user_id", using: :btree
   end
 
   create_table "schedules", force: :cascade do |t|
@@ -79,6 +90,16 @@ ActiveRecord::Schema.define(version: 20170108124729) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_user_attributes_on_user_id", using: :btree
+  end
+
+  create_table "user_relations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "to_user_id"
+    t.integer  "relation_type", default: 0
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.index ["to_user_id"], name: "index_user_relations_on_to_user_id", using: :btree
+    t.index ["user_id"], name: "index_user_relations_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|

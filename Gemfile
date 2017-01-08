@@ -8,7 +8,6 @@ gem 'puma', '~> 3.0'
 
 # Authentication
 gem 'devise', '~> 4.2'
-gem 'devise-bootstrap-views', github: 'hisea/devise-bootstrap-views', branch: 'bootstrap4'
 
 # Assets
 gem 'sass-rails', '~> 5.0'
@@ -17,6 +16,10 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5'
 gem 'bootstrap', '~> 4.0.0.alpha6'
+gem 'simple_calendar', '~> 2.2'
+
+# Other
+gem 'light-decorator', '~> 1.0'
 
 group :development, :test do
   gem 'byebug', platform: :mri
@@ -37,4 +40,8 @@ group :development do
 
   # Control code quality
   gem 'rubocop'
+
+  # Live reload
+  gem 'rack-livereload'
+  gem 'guard-livereload', '~> 2.5', require: false
 end

@@ -1,23 +1,104 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t 'hello'
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t('hello') %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# To learn more, please read the Rails Internationalization guide
-# available at http://guides.rubyonrails.org/i18n.html.
-
 en:
   hello: "Hello world"
+  shared:
+    navigation:
+      edit_profile: "Edit Profile"
+      sign_out: "Sign out"
+    sidebar_nav:
+      directory: "Directory"
+      news: "News"
+      subjects: "Subjects"
+      schedule: "Schedule"
+      grades: "Grades"
+  notifications:
+    created: "Successfully created!"
+    updated: "Successfully updated!"
+    destroyed: "Successfully destroyed!"
+  users:
+    index:
+      title: "Directory"
+      relations: "Relations"
+      contacts: "Contacts"
+    show:
+      title: "Show of %{name}"
+      relations: "Relations"
+      contacts: "Contacts"
+      no_relations: "Empty"
+    new:
+      title: "Creation of User"
+    edit:
+      title: "Profile editing"
+    student_info:
+      grades: "Grades"
+      schedule: "Schedule"
+    teacher_info:
+      subjects: "Subjects"
+      schedule: "Schedule"
+      grades: "Grades"
+  grades:
+    index:
+      title: "Grades"
+      students_count:
+        one: "1 student"
+        other: "%{count} students"
+    show:
+      title: "Grade %{name}"
+      grade_users: "Grade users"
+      schedule: "Schedule"
+      name: "Name"
+      role: "Role"
+    new:
+      title: "Creation of Grade"
+    edit:
+      title: "Editing of %{name}"
+  schedules:
+    index:
+      title: "Schedules"
+    show:
+      title: "%{name}"
+    new:
+      title: "Creation of Schedule"
+    edit:
+      title: "Editing of %{name}"
+  subjects:
+    index:
+      title: "Subjects"
+      name: "Name"
+    show:
+      title: "Subject %{name}"
+      teachers: "Teachers"
+      schedule: "Schedule"
+    new:
+      title: "Creation of Subject"
+    edit:
+      title: "Editing of %{name}"
+  news:
+    index:
+      title: "News"
+    show:
+      title: "Show of %{name}"
+    new:
+      title: "Creation of News"
+    edit:
+      title: "Editing of %{name}"
+  roles:
+    student: "Student"
+    guardian: "Guardian"
+    teacher: "Teacher"
+    staff: "Staff"
+  relations:
+    mother: "Mother"
+    father: "Father"
+    guardian: "Guardian"
+  reversed_relations:
+    mother: "Child"
+    father: "Child"
+    guardian: "Child"
+  grade_user:
+    relations:
+      teacher: "Teacher"
+      student: "Student"
+  simple_calendar:
+    previous: "Previous"
+    next: "Next"
+    week: "Week %{number}"

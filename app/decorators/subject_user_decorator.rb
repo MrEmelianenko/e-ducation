@@ -1,0 +1,2 @@
+class SubjectUserDecorator < ApplicationDecorator
+end

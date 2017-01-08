@@ -3,7 +3,7 @@ class SubjectUser < ApplicationRecord
   belongs_to :subject
   belongs_to :user
 
-  # Validation
+  # Validations
   validates :subject_id, presence: true
   validates :user_id,    presence: true
 

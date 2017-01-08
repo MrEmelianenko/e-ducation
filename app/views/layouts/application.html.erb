@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>UAEducation</title>
+  <title>E-ducation</title>
   <%= csrf_meta_tags %>
 
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -9,9 +9,19 @@
 </head>
 
 <body>
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <%= render partial: 'shared/header_nav' %>
 
-  <%= yield %>
+  <div id="content-wrapper">
+    <div class="row">
+      <div class="col-md-2">
+        <aside id="sidebar">
+          <%= render partial: 'shared/sidebar_nav' %>
+        </aside>
+      </div>
+      <div class="col">
+        <%= yield %>
+      </div>
+    </div>
+  </div>
 </body>
 </html>

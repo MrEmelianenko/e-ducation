@@ -1,0 +1,23 @@
+<header>
+  <div class="row">
+    <div class="col">
+      <%= link_to root_path, class: 'navbar-brand' do %>
+        <strong>E</strong>-ducation
+      <% end %>
+    </div>
+    <div class="col">
+      <ul class="nav float-right">
+        <li class="nav-item dropdown">
+          <%= link_to current_user_decorated.name, current_user,
+                      class: 'nav-link dropdown-toggle', id: 'profile-dropdown',
+                      'data-toggle': 'dropdown', 'aria-haspopup': true, 'aria-expanded': false %>
+
+          <div class="dropdown-menu" aria-labelledby="profile-dropdown">
+            <%= link_to t('.edit_profile'), edit_user_path(current_user), class: 'dropdown-item' %>
+            <%= link_to t('.sign_out'), destroy_user_session_path, method: :delete, class: 'dropdown-item' %>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</header>

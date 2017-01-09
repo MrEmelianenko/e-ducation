@@ -15,8 +15,8 @@
           <div class="col">
             <strong><%= t('.contacts') %></strong>
             <ul class="clear-list">
-              <li>Телефон: <strong><%= user.phone %></strong></li>
-              <li>Email: <strong><%= user.email %></strong></li>
+              <li><%= t('.telephone') %>: <strong><%= user.phone %></strong></li>
+              <li><%= t('.email') %>: <strong><%= user.email %></strong></li>
             </ul>
           </div>
           <% if user.any_relations? %>

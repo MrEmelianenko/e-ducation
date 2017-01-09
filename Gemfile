@@ -7,8 +7,9 @@ gem 'rails', '~> 5.0.1'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 
-# Authentication
+# Authentication & Authorization
 gem 'devise', '~> 4.2'
+gem 'pundit', '~> 1.1'
 
 # Assets
 gem 'sass-rails', '~> 5.0'

@@ -10,10 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170108161602) do
+ActiveRecord::Schema.define(version: 20170109114817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "conversation_users", force: :cascade do |t|
+    t.integer  "conversation_id"
+    t.integer  "user_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["conversation_id"], name: "index_conversation_users_on_conversation_id", using: :btree
+    t.index ["user_id"], name: "index_conversation_users_on_user_id", using: :btree
+  end
+
+  create_table "conversations", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "evaluations", force: :cascade do |t|
+    t.integer  "from_user_id"
+    t.integer  "to_user_id"
+    t.integer  "subject_id"
+    t.integer  "schedule_id"
+    t.integer  "value"
+    t.string   "comment"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["from_user_id"], name: "index_evaluations_on_from_user_id", using: :btree
+    t.index ["schedule_id"], name: "index_evaluations_on_schedule_id", using: :btree
+    t.index ["subject_id"], name: "index_evaluations_on_subject_id", using: :btree
+    t.index ["to_user_id"], name: "index_evaluations_on_to_user_id", using: :btree
+  end
 
   create_table "grade_users", force: :cascade do |t|
     t.integer "grade_id"
@@ -31,6 +61,16 @@ ActiveRecord::Schema.define(version: 20170108161602) do
     t.datetime "updated_at",      null: false
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.integer  "conversation_id"
+    t.integer  "user_id"
+    t.string   "text"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id", using: :btree
+    t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
+  end
+
   create_table "news", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "title"
@@ -45,9 +85,9 @@ ActiveRecord::Schema.define(version: 20170108161602) do
     t.integer  "schedule_id"
     t.integer  "user_id"
     t.integer  "status",      default: 0
-    t.integer  "evaluation"
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false
+    t.string   "comment"
     t.index ["schedule_id"], name: "index_schedule_users_on_schedule_id", using: :btree
     t.index ["user_id"], name: "index_schedule_users_on_user_id", using: :btree
   end

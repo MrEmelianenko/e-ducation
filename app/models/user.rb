@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :grade_users,     dependent: :destroy
   has_many :subject_users,   dependent: :destroy
   has_many :schedule_users,  dependent: :destroy
+  has_many :evaluations,       foreign_key: :to_user_id, dependent: :destroy
   has_many :to_user_relations, foreign_key: :to_user_id, class_name: 'UserRelation'
   has_many :grades,    through: :grade_users
   has_many :subjects,  through: :subject_users

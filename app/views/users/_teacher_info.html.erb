@@ -1,25 +1,37 @@
 <div class="page-sub-header">
-  <h4><%= t('.subjects') %></h4>
+  <a href="#subjects-collapse" data-toggle="collapse" aria-expanded="false" aria-controls="subjects-collapse">
+    <h4><%= t('.subjects') %></h4>
+  </a>
 </div>
 
-<ul class="clear-list">
-  <% user.subjects.each do |subject| %>
-    <li><%= link_to subject, subject %></li>
-  <% end %>
-</ul>
+<div class="collapse" id="subjects-collapse">
+  <ul class="clear-list">
+    <% user.subjects.each do |subject| %>
+      <li><%= link_to subject, subject %></li>
+    <% end %>
+  </ul>
+</div>
 
 <div class="page-sub-header">
-  <h4><%= t('.grades') %></h4>
+  <a href="#grades-collapse" data-toggle="collapse" aria-expanded="false" aria-controls="grades-collapse">
+    <h4><%= t('.grades') %></h4>
+  </a>
 </div>
 
-<ul class="clear-list">
-  <% user.grades.each do |grade| %>
-    <li><%= link_to grade, grade %></li>
-  <% end %>
-</ul>
+<div class="collapse" id="grades-collapse">
+  <ul class="clear-list">
+    <% user.grades.each do |grade| %>
+      <li><%= link_to grade, grade %></li>
+    <% end %>
+  </ul>
+</div>
 
 <div class="page-sub-header">
-  <h4><%= t('.schedule') %></h4>
+  <a href="#schedule-collapse" data-toggle="collapse" aria-expanded="false" aria-controls="schedule-collapse">
+    <h4><%= t('.schedule') %></h4>
+  </a>
 </div>
 
-<%= render partial: 'schedules/calendar', locals: { schedules: user.teacher_schedules } %>
+<div class="collapse" id="schedule-collapse">
+  <%= render partial: 'schedules/calendar', locals: { schedules: user.teacher_schedules } %>
+</div>

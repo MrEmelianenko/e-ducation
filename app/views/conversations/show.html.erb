@@ -1,0 +1,37 @@
+<div class="page-header">
+  <h1><%= conversation %></h1>
+</div>
+
+<% if conversation.messages.any? %>
+  <div class="messages-list">
+    <% conversation.messages.each do |message| %>
+      <div class="messages-list-item">
+        <div class="row">
+          <div class="col-md-6 <%= 'offset-md-6' if message.user == current_user %>">
+            <h6><%= message.user.name_formatted %></h6>
+            <div class="card">
+              <div class="card-block">
+                <%= message.text %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <blockquote class="blockquote">
+    <%= t('.no_messages_yet') %>
+  </blockquote>
+<% end %>
+
+<%= form_for [conversation, conversation.messages.new] do |f| %>
+  <div class="row">
+    <div class="col">
+      <%= f.text_field :text, class: 'form-control' %>
+    </div>
+    <div class="col-md-2">
+      <%= f.submit t('.send'), class: 'btn btn-primary btn-block' %>
+    </div>
+  </div>
+<% end %>

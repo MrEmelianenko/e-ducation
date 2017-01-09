@@ -3,6 +3,7 @@ class Schedule < ApplicationRecord
   belongs_to :subject
   belongs_to :grade
   belongs_to :user
+  has_many :evaluations,    dependent: :destroy
   has_many :schedule_users, dependent: :destroy
   has_many :users, through: :schedule_users
 

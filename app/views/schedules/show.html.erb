@@ -4,29 +4,74 @@
 
 <hr>
 
-<h5>Предмет: <%= link_to schedule.subject, schedule.subject %></h5>
-<h5>Преподаватель: <%= link_to schedule.user, schedule.user %></h5>
+<h5><%= t('.date') %>: <strong><%= l(schedule.start_at, format: :short) %>-<%= schedule.finish_at.to_s(:time) %></strong></h5>
+<h5><%= t('.subject') %>: <%= link_to schedule.subject, schedule.subject %></h5>
+<h5><%= t('.teacher') %>: <%= link_to schedule.user, schedule.user %></h5>
 
 <hr>
 
 <div class="page-sub-header">
-  <h4>Список учеников</h4>
+  <h4><%= t('.list_of_students') %></h4>
 </div>
 
-<table class="table table-hover">
+<table class="table">
   <thead>
     <tr>
-      <td>Имя</td>
-      <td width="20%" class="text-center">Присутствует</td>
-      <td width="10%" class="text-center">Оценка</td>
+      <td><%= t('.name') %></td>
+      <td width="20%" class="text-center"><%= t('.present') %></td>
+      <td width="50%" class="text-center"><%= t('.evaluations') %></td>
     </tr>
   </thead>
   <tbody>
     <% schedule.schedule_users.each do |relation| %>
       <tr>
         <td><%= relation.user.name_formatted %></td>
-        <td class="text-center"><input type="checkbox" checked></td>
-        <td><input type="number" placeholder="–" class="form-control"></td>
+        <td class="text-center">
+          <% if policy(schedule).set_absent? %>
+            <input type="checkbox" checked>
+          <% else %>
+            &#10003;
+          <% end %>
+        </td>
+        <td>
+            <table class="table table-sm table-hover table-with-evaluations">
+              <tbody>
+                <% schedule.evaluations.for_user(relation.user.object).each do |evaluation| %>
+                  <tr>
+                    <td width="20%" class="text-center">
+                      <strong><%= evaluation.value_colored %></strong>
+                    </td>
+                    <td>
+                      <i><%= evaluation.comment.presence || t('.no_comment') %></i>
+                    </td>
+                    <% if policy(schedule).add_evaluations? %>
+                      <td width="20%" class="text-center">
+                        <%= link_to t('.remove'), evaluation_path(evaluation), method: :delete %>
+                      </td>
+                    <% end %>
+                  </tr>
+                <% end %>
+                <% if policy(schedule).add_evaluations? %>
+                  <%= form_for schedule.evaluations.new do |f| %>
+                    <%= f.hidden_field :to_user_id,  value: relation.user_id %>
+                    <%= f.hidden_field :subject_id,  value: schedule.subject_id %>
+                    <%= f.hidden_field :schedule_id, value: schedule.id %>
+                    <tr>
+                      <td width="20%">
+                        <%= f.number_field :value, placeholder: '1-5', class: 'form-control' %>
+                      </td>
+                      <td>
+                        <%= f.text_field :comment, placeholder: t('.evaluation_comment'), class: 'form-control' %>
+                      </td>
+                      <td width="20%">
+                        <%= f.submit '+', class: 'btn btn-primary btn-sm btn-block' %>
+                      </td>
+                    </tr>
+                  <% end %>
+                <% end %>
+              </tbody>
+            </table>
+        </td>
       </tr>
     <% end %>
   </tbody>

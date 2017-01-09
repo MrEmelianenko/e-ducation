@@ -19,6 +19,14 @@ $font-family-sans-serif: "Open Sans", BlinkMacSystemFont, "Segoe UI", Roboto, "H
 
 @import "bootstrap";
 
+.alert-alert {
+  @extend .alert-danger;
+}
+
+.alert-notice {
+  @extend .alert-warning;
+}
+
 html, body, #content-container, #content-container .row, #sidebar {
   height: 100%;
 }
@@ -53,10 +61,22 @@ header {
 }
 
 #sidebar {
+  h6 {
+    margin: 25px 0 10px;
+
+    color: #666;
+    font-size: 14px;
+    font-weight: 900;
+  }
+
   .nav-item {
     &:hover {
       background-color: #fafafa;
     }
+  }
+
+  .fast-access-menu {
+    font-size: 13px;
   }
 }
 
@@ -66,6 +86,21 @@ header {
 
 .page-sub-header {
   margin: 30px 0 20px;
+  border-bottom: 1px solid #eee;
+
+  a {
+    color: #292b2c;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+    }
+  }
+}
+
+.blockquote {
+  font-size: 15px;
 }
 
 .bg-faded {
@@ -119,5 +154,37 @@ header {
 
       padding-bottom: 10px;
     }
+  }
+}
+
+.send-message-form {
+  input[type="submit"] {
+    cursor: pointer;
+  }
+}
+
+.messages-list {
+  margin: 0 0 20px;
+
+  .messages-list-item {
+    margin: 0 0 10px;
+
+    h6 {
+      font-size: 13px;
+    }
+
+    .card-block {
+      font-size: 14px;
+      padding: .7rem .9rem;
+    }
+  }
+}
+
+.table-with-evaluations {
+  font-size: 12px;
+
+  .form-control {
+    font-size: 13px;
+    padding: 0.3rem 0.5rem;
   }
 }

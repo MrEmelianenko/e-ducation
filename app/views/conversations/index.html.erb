@@ -1,0 +1,17 @@
+<div class="page-header">
+  <h1><%= t('.title') %></h1>
+</div>
+
+<% if conversations.any? %>
+  <div class="decorated-list">
+    <% conversations.each do |conversation| %>
+      <div class="decorated-list-item">
+        <%= link_to conversation, conversation %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <blockquote class="blockquote">
+    <%= t('conversations.show.no_messages_yet') %>
+  </blockquote>
+<% end %>

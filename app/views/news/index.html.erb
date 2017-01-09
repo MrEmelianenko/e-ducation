@@ -5,7 +5,7 @@
 <div class="decorated-list">
   <% news.each do |item| %>
     <div class="decorated-list-item">
-      <h3><%= item.title %> <small class="text-muted text-small"><%= item.created_at.to_formatted_s(:short) %></small></h3>
+      <h3><%= item.title %> <small class="text-muted text-small"><%= l(item.created_at, format: :short) %></small></h3>
       <div class="body"><%= item.body %></div>
     </div>
   <% end %>

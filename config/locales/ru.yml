@@ -268,12 +268,18 @@ ru:
     header_nav:
       edit_profile: "Редактировать"
       sign_out: "Выйти"
+      profile: "Профиль"
+      private_messages: "Личные сообщения"
     sidebar_nav:
       directory: "Справочник"
       schedule: "Расписание"
       subjects: "Предметы"
       news: "Новости"
       grades: "Классы"
+      fast_access: "Быстрый доступ"
+      menu: "Меню"
+      change_language: "Сменить язык"
+      my_profile: "Мой профиль"
   notifications:
     created: "Успешно создано!"
     updated: "Успешно изменено!"
@@ -283,6 +289,8 @@ ru:
       title: "Справочник"
       relations: "Связи"
       contacts: "Контакты"
+      telephone: "Телефон"
+      email: "Email"
     show:
       title: "Просмотр %{name}"
       contacts: "Контакты"
@@ -294,7 +302,15 @@ ru:
       title: "Редактирование профиля"
     student_info:
       grades: "Классы"
-      schedule: "Расписание"
+      schedule: "Урок"
+      teacher_comments: "Комментарии учителей"
+      evaluations: "Оценки"
+      subject: "Предмет"
+      evaluation: "Оценка"
+      comment: "Комментарий"
+      schedules: "Расписание"
+      date: "Дата"
+      teacher: "Преподаватель"
     teacher_info:
       subjects: "Предметы"
       schedule: "Расписание"
@@ -303,6 +319,8 @@ ru:
     index:
       title: "Классы"
       students_count: "Учеников: %{count}"
+      name: "Название"
+      teacher: "Руководитель"
     show:
       title: "Класс %{name}"
       grade_users: "Состав класса"
@@ -318,6 +336,16 @@ ru:
       title: "Расписание"
     show:
       title: "%{name}"
+      no_comment: "Нет комментария"
+      date: "Дата"
+      subject: "Предмет"
+      teacher: "Преподаватель"
+      list_of_students: "Список учеников"
+      name: "Имя"
+      present: "Присутствует"
+      evaluations: "Оценки"
+      evaluation_comment: "Комментарий к оценке"
+      remove: "Удалить"
     new:
       title: "Создание расписания"
     edit:
@@ -364,3 +392,11 @@ ru:
     previous: "Предыдущая"
     next: "Следующая"
     week: "Неделя #%{number}"
+  conversations:
+    index:
+      title: "Диалоги"
+    send_message_button:
+      send_message: "Написать сообщение"
+    show:
+      send: "Отправить"
+      no_messages_yet: "Пока нет ни одного сообщения"

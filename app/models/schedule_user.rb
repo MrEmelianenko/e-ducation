@@ -6,7 +6,6 @@ class ScheduleUser < ApplicationRecord
   # Validations
   validates :schedule_id, presence: true
   validates :user_id,     presence: true
-  validates :evaluation,  inclusion: 0..5, allow_nil: true
 
   # Enumerable
   enum status: {
@@ -14,4 +13,7 @@ class ScheduleUser < ApplicationRecord
     present: 20,
     kicked:  30
   }
+
+  # Scopes
+  scope :with_comment, -> { where.not(comment: nil) }
 end

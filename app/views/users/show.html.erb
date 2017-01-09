@@ -1,5 +1,15 @@
 <div class="page-header">
-  <h1><%= user.name_formatted %></h1>
+  <h1>
+    <%= user.name_formatted %>
+
+    <% if user.me? %>
+      <%= link_to t('shared.header_nav.edit_profile'), edit_user_path(user), class: 'btn btn-secondary float-right' %>
+    <% else %>
+      <span class="float-right">
+        <%= render partial: 'conversations/send_message_button', locals: { user: user } %>
+      </span>
+    <% end %>
+  </h1>
 </div>
 
 <div class="user-show">
@@ -7,8 +17,8 @@
     <div class="col">
       <h5><%= t('.contacts') %></h5>
       <ul class="clear-list">
-        <li>Телефон: <strong><%= user.phone %></strong></li>
-        <li>Email: <strong><%= user.email %></strong></li>
+        <li><%= t('users.index.telephone') %>: <strong><%= user.phone %></strong></li>
+        <li><%= t('users.index.email') %>: <strong><%= user.email %></strong></li>
       </ul>
     </div>
     <div class="col">

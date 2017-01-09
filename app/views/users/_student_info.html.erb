@@ -9,7 +9,82 @@
 </ul>
 
 <div class="page-sub-header">
-  <h4><%= t('.schedule') %></h4>
+  <h4>
+    <a href="#evaluation-collapse" data-toggle="collapse" aria-expanded="false" aria-controls="evaluation-collapse">
+      <%= t('.evaluations') %>
+    </a>
+  </h4>
 </div>
 
-<%= render partial: 'schedules/calendar', locals: { schedules: user.schedules } %>
+<div class="collapse" id="evaluation-collapse">
+  <table class="table table-hover">
+    <thead>
+    <tr>
+      <th><%= t('.subject') %></th>
+      <th class="text-center"><%= t('.evaluation') %></th>
+      <th><%= t('.comment') %></th>
+      <th><%= t('.schedule') %></th>
+    </tr>
+    </thead>
+    <tbody>
+    <% user.evaluations.each do |evaluation| %>
+      <tr>
+        <td><%= link_to evaluation.subject, evaluation.subject %></td>
+        <td class="text-center"><strong><%= evaluation.value_colored %></strong></td>
+        <td>
+          <% if evaluation.comment %>
+            <%= evaluation.comment %>
+          <% else %>
+            <small><i><%= t('schedules.show.no_comment') %></i></small>
+          <% end %>
+        </td>
+        <td>
+          <% if evaluation.schedule %>
+            <%= link_to evaluation.schedule, evaluation.schedule %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<div class="page-sub-header">
+  <h4>
+    <a href="#comments-collapse" data-toggle="collapse" aria-expanded="false" aria-controls="comments-collapse">
+      <%= t('.teacher_comments') %>
+    </a>
+  </h4>
+</div>
+
+<div class="collapse" id="comments-collapse">
+  <div class="decorated-list">
+    <% user.schedule_users.with_comment.each do |schedule_user| %>
+      <div class="decorated-list-item">
+        <ul class="clear-list">
+          <li><%= t('.subject') %>: <strong><%= link_to schedule_user.schedule, schedule_user.schedule %></strong></li>
+          <li><%= t('.date') %>: <strong><%= l(schedule_user.schedule.start_at, format: :short) %></strong></li>
+          <li><%= t('.teacher') %>: <strong><%= link_to schedule_user.schedule.user, schedule_user.schedule.user %></strong></li>
+        </ul>
+
+        <br>
+
+        <blockquote class="blockquote">
+          <%= schedule_user.comment %>
+        </blockquote>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="page-sub-header">
+  <h4>
+    <a href="#schedules-collapse" data-toggle="collapse" aria-expanded="false" aria-controls="schedules-collapse">
+      <%= t('.schedules') %>
+    </a>
+  </h4>
+</div>
+
+<div class="collapse" id="schedules-collapse">
+  <%= render partial: 'schedules/calendar', locals: { schedules: user.schedules } %>
+</div>

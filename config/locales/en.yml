@@ -8,8 +8,17 @@ en:
       directory: "Directory"
       news: "News"
       subjects: "Subjects"
-      schedule: "Schedule"
+      schedule: "Schedules"
       grades: "Grades"
+      fast_access: "Fast access"
+      menu: "Menu"
+      change_language: "Change language"
+      my_profile: "My Profile"
+    header_nav:
+      edit_profile: "Edit profile"
+      profile: "Profile"
+      sign_out: "Sign Out"
+      private_messages: "Private Messages"
   notifications:
     created: "Successfully created!"
     updated: "Successfully updated!"
@@ -19,6 +28,8 @@ en:
       title: "Directory"
       relations: "Relations"
       contacts: "Contacts"
+      telephone: "Telephone"
+      email: "Email"
     show:
       title: "Show of %{name}"
       relations: "Relations"
@@ -31,6 +42,14 @@ en:
     student_info:
       grades: "Grades"
       schedule: "Schedule"
+      teacher_comments: "Teacher comments"
+      evaluations: "Evaluations"
+      subject: "Subject"
+      evaluation: "Evaluation"
+      comment: "Comment"
+      schedules: "Schedules"
+      date: "Date"
+      teacher: "Teacher"
     teacher_info:
       subjects: "Subjects"
       schedule: "Schedule"
@@ -41,6 +60,8 @@ en:
       students_count:
         one: "1 student"
         other: "%{count} students"
+      name: "Name"
+      teacher: "Teacher"
     show:
       title: "Grade %{name}"
       grade_users: "Grade users"
@@ -56,6 +77,16 @@ en:
       title: "Schedules"
     show:
       title: "%{name}"
+      no_comment: "No comment"
+      date: "Date"
+      subject: "Subject"
+      teacher: "Teacher"
+      list_of_students: "List of Students"
+      name: "Name"
+      present: "Present"
+      evaluations: "Evaluations"
+      evaluation_comment: "Evaluation comment"
+      remove: "Remove"
     new:
       title: "Creation of Schedule"
     edit:
@@ -102,3 +133,11 @@ en:
     previous: "Previous"
     next: "Next"
     week: "Week %{number}"
+  conversations:
+    index:
+      title: "Conversations"
+    send_message_button:
+      send_message: "Send Message"
+    show:
+      send: "Send"
+      no_messages_yet: "No messages yet"

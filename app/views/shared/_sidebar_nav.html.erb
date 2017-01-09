@@ -1,19 +1,47 @@
-<div id="sidebar-nav">
-  <ul class="nav flex-column">
-    <li class="nav-item">
-      <%= link_to t('.directory'), users_path, class: 'nav-link' %>
-    </li>
-    <li class="nav-item">
-      <%= link_to t('.schedule'), schedules_path, class: 'nav-link' %>
-    </li>
-    <li class="nav-item">
-      <%= link_to t('.grades'), grades_path, class: 'nav-link' %>
-    </li>
-    <li class="nav-item">
-      <%= link_to t('.subjects'), subjects_path, class: 'nav-link' %>
-    </li>
-    <li class="nav-item">
-      <%= link_to t('.news'), news_index_path, class: 'nav-link' %>
-    </li>
+<h6><%= t('.menu') %></h6>
+<ul class="nav flex-column">
+  <li class="nav-item">
+    <%= link_to t('.directory'), users_path, class: 'nav-link' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to t('.schedule'), schedules_path, class: 'nav-link' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to t('.grades'), grades_path, class: 'nav-link' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to t('.subjects'), subjects_path, class: 'nav-link' %>
+  </li>
+  <li class="nav-item">
+    <%= link_to t('.news'), news_index_path, class: 'nav-link' %>
+  </li>
+</ul>
+
+<% if current_user_decorated.any_relations? %>
+  <h6><%= t('.fast_access') %></h6>
+  <ul class="nav flex-column fast-access-menu">
+    <% if current_user.student? %>
+      <li class="nav-item">
+        <%= link_to t('.my_profile'), current_user, class: 'nav-link' %>
+      </li>
+    <% end %>
+
+    <% current_user.user_relations.each do |relation| %>
+      <li class="nav-item">
+        <%= link_to relation.to_user, relation.to_user, class: 'nav-link' %>
+      </li>
+    <% end %>
+
+    <% current_user.to_user_relations.each do |relation| %>
+      <li class="nav-item">
+        <%= link_to relation.user, relation.user, class: 'nav-link' %>
+      </li>
+    <% end %>
   </ul>
-</div>
+<% end %>
+
+<h6><%= t('.change_language') %></h6>
+<ul class="clear-list">
+  <li><small><%= link_to 'Русский', url_for(params.merge(locale: :ru).permit!) %></small></li>
+  <li><small><%= link_to 'English', url_for(params.merge(locale: :en).permit!) %></small></li>
+</ul>

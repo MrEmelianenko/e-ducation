@@ -1,6 +1,6 @@
 <%= week_calendar events: schedules do |date, schedules| %>
   <div class="calendar-cell">
-    <div class="date"><%= date %></div>
+    <div class="date"><%= l(date, format: :short) %></div>
 
     <ul class="list-of-schedules clear-list">
       <% schedules.each do |schedule| %>

@@ -155,17 +155,67 @@ subject_1.subject_users.create!(user: user_11, relation_type: :teacher)
 
 # Create schedules
 
-time_now = Time.now
-time_limit = Time.now + 2.weeks
+date = Time.now
+schedules = []
 
-25.times {
-  subject  = subjects.sample
-  grade    = grades.sample
-  teacher  = subject.subject_users.teacher.take&.user || teachers.sample
-  start_at = rand(time_now..time_limit).beginning_of_hour
+30.times do
+  date += 1.day
+  next if date.on_weekend?
 
-  Schedule.create!(subject: subject, grade: grade, user: teacher, start_at: start_at)
-}
+  rand(4..6).times do
+    subject  = subjects.sample
+    grade    = grades.sample
+    teacher  = subject.subject_users.teacher.take&.user || teachers.sample
+    start_at = date.change(hour: rand(8..16))
+
+    schedules << Schedule.create!(subject: subject, grade: grade, user: teacher, start_at: start_at)
+  end
+end
+
+# Create evaluations
+
+evaluation_comments = [
+  'Работа на уроке',
+  'Домашнее задание',
+  'Контрольная работа',
+  'Произведение',
+  'Другое',
+  nil
+]
+
+30.times do
+  from_user = teachers.sample
+  to_user   = students.sample
+  schedule  = schedules.sample
+
+  Evaluation.create!(
+    from_user: from_user,
+    to_user:   to_user,
+    schedule:  schedule,
+    subject:   schedule.subject,
+    value:     rand(2..5),
+    comment:   evaluation_comments.sample
+  )
+end
+
+# Create comments from teachers
+
+schedule_comments = [
+  'Поведение неудовлетворительное',
+  'Разбил вазу',
+  'Отличная работа на уроке',
+  'Не выучил материал',
+  'Просьба родителей прийти в школу',
+  'Проявил инициативу на уроке',
+  'Поднял восстание на уроке',
+  'Ваш сын просто молодец!',
+  'Провел отлично урок вместо учителя'
+]
+
+10.times do
+  schedule_user = ScheduleUser.reorder('RANDOM()').take
+  schedule_user.update!(comment: schedule_comments.sample)
+end
 
 # Create news
 

@@ -15,6 +15,10 @@ class UserDecorator < ApplicationDecorator
     user_relations.any? || to_user_relations.any?
   end
 
+  def me?
+    helpers.current_user == self
+  end
+
   def to_s
     name
   end
